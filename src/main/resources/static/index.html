@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decorator Towers</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Embedded Java frontend</p>
+        <h1>Decorator Towers</h1>
+        <p class="subtext">Create towers, apply decorators, inspect price breakdowns, and run simulations through the embedded proxy.</p>
+      </div>
+      <div class="connection-card">
+        <label for="backendUrl">Backend URL</label>
+        <input id="backendUrl" type="text" value="http://localhost:8081" spellcheck="false">
+        <button id="saveBackendUrl" type="button">Save backend</button>
+        <p class="hint">Requests are proxied with <code>X-API-KEY</code>.</p>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2>Catalog of decorators</h2>
+          <button id="reloadDecorators" type="button">Reload</button>
+        </div>
+        <div id="decoratorsList" class="cards"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Create tower</h2>
+        <form id="createTowerForm" class="form">
+          <label>Name <input name="name" required></label>
+          <label>Description <textarea name="description" rows="3" required></textarea></label>
+          <label>Base price <input name="basePrice" type="number" min="0" step="0.01" required></label>
+          <button type="submit">Create tower</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Apply or remove</h2>
+        <form id="decorateForm" class="form compact">
+          <label>Tower <select name="componentId" id="decorateComponent"></select></label>
+          <label>Decorator <select name="decoratorType" id="decorateType"></select></label>
+          <button type="submit">Apply decorator</button>
+        </form>
+        <form id="removeForm" class="form compact">
+          <label>Tower <select name="componentId" id="removeComponent"></select></label>
+          <label>Decorator type <input name="decoratorType" placeholder="INSURANCE"></label>
+          <button type="submit">Remove decorator</button>
+        </form>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2>Saved towers</h2>
+          <button id="reloadComponents" type="button">Reload</button>
+        </div>
+        <div id="componentsList" class="cards"></div>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-head">
+          <h2>Tower detail</h2>
+          <button id="reloadSelected" type="button">Refresh selected</button>
+        </div>
+        <div id="detailView" class="detail empty">Select a tower to inspect its breakdown.</div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Simulation without saving</h2>
+        <form id="simulateForm" class="form simulation">
+          <label>Name <input name="name" required></label>
+          <label>Description <textarea name="description" rows="3" required></textarea></label>
+          <label>Base price <input name="basePrice" type="number" min="0" step="0.01" required></label>
+          <label>Decorators <input name="decorators" placeholder="INSURANCE, PRIORITY_SUPPORT"></label>
+          <button type="submit">Run simulation</button>
+        </form>
+        <pre id="simulationOutput" class="output">No simulation yet.</pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

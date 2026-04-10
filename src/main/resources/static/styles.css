@@ -1,0 +1,172 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1116;
+  --panel: #161a22;
+  --panel-2: #1d2430;
+  --border: #2a3444;
+  --text: #edf2ff;
+  --muted: #9fb0cc;
+  --accent: #75d1ff;
+  --accent-2: #8a7dff;
+  --danger: #ff7c9c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #182033, var(--bg) 45%);
+  color: var(--text);
+}
+
+button, input, textarea, select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #08111d;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 0.9rem;
+  background: #0e1320;
+  color: var(--text);
+}
+
+.page-shell {
+  width: min(1280px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  margin: 0 0 0.5rem;
+}
+
+h1, h2, p { margin-top: 0; }
+
+.subtext, .hint { color: var(--muted); }
+
+.connection-card, .panel {
+  background: rgba(22, 26, 34, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.22);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.wide { grid-column: 1 / -1; }
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+}
+
+.card, .detail, .output {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.card.active {
+  border-color: var(--accent);
+}
+
+.form {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.form.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: end;
+}
+
+.form.compact button,
+.simulation button {
+  grid-column: 1 / -1;
+}
+
+label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.detail.empty {
+  color: var(--muted);
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.pill {
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(117, 209, 255, 0.12);
+  border: 1px solid rgba(117, 209, 255, 0.25);
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.pill.danger {
+  background: rgba(255, 124, 156, 0.12);
+  border-color: rgba(255, 124, 156, 0.25);
+}
+
+.output {
+  min-height: 140px;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 900px) {
+  .hero, .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form.compact {
+    grid-template-columns: 1fr;
+  }
+}
