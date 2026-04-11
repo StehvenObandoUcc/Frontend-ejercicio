@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decorator Towers</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Tower Defense &mdash; Decorator Pattern</p>
+        <h1>Decorator Towers</h1>
+        <p class="subtext">Create towers, apply decorator upgrades, inspect price breakdowns, simulate compositions and run enemy wave simulations.</p>
+      </div>
+      <div class="connection-card">
+        <label for="backendUrl">Backend URL</label>
+        <input id="backendUrl" type="text" spellcheck="false">
+        <button id="saveBackendUrl" type="button">Save &amp; reconnect</button>
+        <p class="hint">All requests include <code>X-API-KEY</code> header.</p>
+        <p id="statusIndicator" class="hint">Checking connection&hellip;</p>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="catalog">Catalog</button>
+      <button class="tab" data-tab="towers">Towers</button>
+      <button class="tab" data-tab="simulate">Simulate</button>
+      <button class="tab" data-tab="wave">Wave</button>
+    </nav>
+
+    <main>
+      <!-- CATALOG TAB -->
+      <section id="tab-catalog" class="tab-content active">
+        <div class="panel wide">
+          <div class="panel-head">
+            <h2>Decorator catalog</h2>
+            <button id="reloadDecorators" type="button">Reload</button>
+          </div>
+          <div id="decoratorsList" class="cards"></div>
+        </div>
+      </section>
+
+      <!-- TOWERS TAB -->
+      <section id="tab-towers" class="tab-content" hidden>
+        <div class="grid">
+          <div class="panel">
+            <h2>Create tower</h2>
+            <form id="createTowerForm" class="form">
+              <label>Name <input name="name" required></label>
+              <label>Description <textarea name="description" rows="2" required></textarea></label>
+              <label>Base price <input name="basePrice" type="number" min="0" step="0.01" required></label>
+              <button type="submit">Create tower</button>
+            </form>
+          </div>
+
+          <div class="panel">
+            <h2>Apply decorator</h2>
+            <form id="decorateForm" class="form">
+              <label>Tower <select name="componentId" id="decorateComponent"></select></label>
+              <label>Decorator <select name="decoratorType" id="decorateType"></select></label>
+              <button type="submit">Apply</button>
+            </form>
+            <hr>
+            <h2>Remove decorator</h2>
+            <form id="removeForm" class="form">
+              <label>Tower <select name="componentId" id="removeComponent"></select></label>
+              <label>Decorator type <select name="decoratorType" id="removeType"></select></label>
+              <button type="submit" class="btn-danger">Remove</button>
+            </form>
+          </div>
+
+          <div class="panel wide">
+            <div class="panel-head">
+              <h2>Saved towers</h2>
+              <button id="reloadComponents" type="button">Reload</button>
+            </div>
+            <div id="componentsList" class="cards"></div>
+          </div>
+
+          <div class="panel wide">
+            <div class="panel-head">
+              <h2>Tower detail &amp; price breakdown</h2>
+            </div>
+            <div id="detailView" class="detail empty">Select a tower to inspect its breakdown.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIMULATE TAB -->
+      <section id="tab-simulate" class="tab-content" hidden>
+        <div class="panel wide">
+          <h2>Simulate composition (without saving)</h2>
+          <form id="simulateForm" class="form simulation">
+            <label>Name <input name="name" required></label>
+            <label>Description <textarea name="description" rows="2" required></textarea></label>
+            <label>Base price <input name="basePrice" type="number" min="0" step="0.01" required></label>
+            <div id="simDecoratorChecks" class="checkbox-group"></div>
+            <button type="submit">Run simulation</button>
+          </form>
+          <pre id="simulationOutput" class="output">No simulation yet.</pre>
+        </div>
+      </section>
+
+      <!-- WAVE TAB -->
+      <section id="tab-wave" class="tab-content" hidden>
+        <div class="panel wide">
+          <h2>Enemy wave simulation</h2>
+          <div class="wave-controls">
+            <label>Select tower <select id="waveTowerSelect"></select></label>
+            <label>Enemies <input id="waveEnemyCount" type="number" min="1" max="30" value="8"></label>
+            <button id="waveStart" type="button">Launch wave</button>
+          </div>
+          <canvas id="waveCanvas" width="900" height="340"></canvas>
+          <div id="waveLog" class="output">Press "Launch wave" to start the simulation.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
