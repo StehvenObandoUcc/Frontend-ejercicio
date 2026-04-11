@@ -1,5 +1,5 @@
 /* ===== CONFIG ===== */
-const DEFAULT_BACKEND = 'https://backend-ejercicio.onrender.com';
+const DEFAULT_BACKEND = 'https://backend-clinica-fqky.onrender.com';
 const API_KEY = 'decorator-secret-2026';
 
 /* ===== STATE ===== */
